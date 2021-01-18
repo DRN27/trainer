@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>drn (c)</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <div class="wrapper">
+            <div ref="card" class="card">{{ listOfWords.words[counter].question }}</div>
+            <div class="answers-container">
+                <div
+                    v-for="(item, index) in listOfWords.answers" 
+                    @click="checkAnswer(item, index, listOfWords.words[counter])"
+                >
+                    <p class="answer" :class="{wrong: item.isCorrect === 'wrong', right: item.isCorrect === 'right'}">{{item.value}}</p>
+                    <div class="answers-list" v-if="item.answersList.length">
+                        <ul>
+                            <ol v-for="item in item.answersList">{{item}}</ol>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
